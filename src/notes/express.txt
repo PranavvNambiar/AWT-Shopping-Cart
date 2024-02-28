@@ -1,0 +1,5 @@
+Express is used to handle routes
+Use both express.json()
+and url encoded to accept both type of data.
+
+Express is used to work with routes(something expected from client)
