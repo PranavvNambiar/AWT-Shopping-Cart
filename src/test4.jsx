@@ -40,13 +40,13 @@ function RegistrationForm() {
           lastName : lastName,
           email : email,
           password : password,
-          confirmPassword : confirmPassword,
-          gender : gender,
+          // confirmPassword : confirmPassword,
+          // gender : gender,
         };
         try {
           const response = await fetch('http://localhost:4000/submit-form',{
             // !THIS PORT NUMBER AND THE EXPRESS PORT NUMBER NEED TO BE THE SAME
-            method: 'POST',
+            method: 'POST', //!IN express, this method needs to be same(mysql2, express)
             headers: {
               'Content-Type':'application/json',
             },
