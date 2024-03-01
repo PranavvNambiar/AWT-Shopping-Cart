@@ -1,7 +1,9 @@
 import React, {useState, setState} from 'react';
 
 function RegistrationForm() {
-    const [firstName, setFirstName] = useState('');
+    //*For setting the initial state, the name in the set part of the code will be Capitalized
+    //*Like - firstName, setFirstName.
+    const [firstName, setFirstName] = useState(''); 
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password,setPassword] = useState('');
@@ -169,29 +171,38 @@ function RegistrationForm() {
         id="firstName"
         value={firstName}
         onChange={handleInputChange}
-        placeholder="First Name"
-    /><br></br>
-    <input
-        type="text"
-        id="lastName"
-        value={lastName}
-        onChange={handleInputChange}
-        placeholder="Last Name"
-    /><br></br>
-    <input
-        type="email"
-        id="email"
-        value={email}
-        onChange={handleInputChange}
-        placeholder="Email"
-    /><br></br>
-    <input
-        type="password"
-        id="password"
-        value={password}
-        onChange={handleInputChange}
-        placeholder="Password"
-    /><br></br>
+        placeholder="First Name"/><br></br>
+
+        <input
+            type="text"
+            id="lastName"
+            value={lastName}
+            onChange={handleInputChange}
+            placeholder="Last Name"
+        /><br></br>
+
+        <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={handleInputChange}
+            placeholder="Email"/><br></br>
+
+        <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={handleInputChange}
+            placeholder="Password"/><br></br>
+
+        <input
+          type="password"
+          id="confirmPassword"
+          value={confirmPassword}
+          onChange={handleInputChange}
+          placeholder="Confirm Password"/>
+      <br></br>
+
     <div>
     <input type="radio" 
         id="gender" 
@@ -199,26 +210,22 @@ function RegistrationForm() {
         value="Male" 
         checked={gender === 'Male'} 
         onChange={handleInputChange} /> Male
-    <input type="radio" 
-    id="gender" 
-    name="gender" 
-    value="Female" 
-    checked={gender === 'Female'} 
-    onChange={handleInputChange} /> Female
-    <input type="radio" 
-    id="gender" 
-    name="gender" 
-    value="Others" 
-    checked={gender === 'Others'} 
-    onChange={handleInputChange} /> Others
+
+      <input type="radio" 
+      id="gender" 
+      name="gender" 
+      value="Female" 
+      checked={gender === 'Female'} 
+      onChange={handleInputChange} /> Female
+
+      <input type="radio" 
+      id="gender" 
+      name="gender" 
+      value="Others" 
+      checked={gender === 'Others'} 
+      onChange={handleInputChange} /> Others
     </div>
-    <input
-        type="password"
-        id="confirmPassword"
-        value={confirmPassword}
-        onChange={handleInputChange}
-        placeholder="Confirm Password"
-    /><br></br>
+
     <button type="submit" 
     // onClick={() => {validateForm()}}
     >Register</button>
