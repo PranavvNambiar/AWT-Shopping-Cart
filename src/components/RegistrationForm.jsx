@@ -30,28 +30,24 @@ function RegistrationForm() {
         if(id === "gender"){
             setGender(value);
         }
-
     }
 
     const handleSubmit  = async (event) => {
         event.preventDefault();
-        console.log(firstName,lastName,email,password,confirmPassword);
+        console.log(firstName, lastName, email, password, gender);
 
         const formData = {
           firstName : firstName,
           lastName : lastName,
           email : email,
           password : password,
-          // confirmPassword : confirmPassword,
-          gender : gender,
+          gender : gender
         };
         try {
           const response = await fetch('http://localhost:4000/submit-form',{
             // !THIS PORT NUMBER AND THE EXPRESS PORT NUMBER NEED TO BE THE SAME
             method: 'POST', //!IN express, this method needs to be same(mysql2, express)
-            headers: {
-              'Content-Type':'application/json',
-            },
+            headers: {'Content-Type':'application/json'},
             body: JSON.stringify(formData),
           });
           if(response.ok){

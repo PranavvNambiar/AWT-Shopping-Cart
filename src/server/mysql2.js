@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
-const port = 4000; //* SAME AS TEST4.JSX
+const port = 4000; //* SAME AS RegistrationForm.JSX
 const cors = require('cors');
 app.use(cors());
+
 // Ensure you're requiring the promise version of mysql2
 const mysql = require('mysql2/promise');
 
