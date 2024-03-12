@@ -30,12 +30,18 @@ fs.open('sample.txt','r+',function(err,fd){
     if(err){
         em.emit("error", "File Not Found");
     }
+    else{
+        console.log("File Content: ",fd);
+    }
 });
 
 fs.open('samplez1.txt', 'r+', function(err, fd){ 
    if (err) { 
       em.emit("error","File not found12");
    } 
+   else{
+    console.log("File Content: ",fd);
+}
 });
 
 em.emit('FirstEvent', "This is my first Node.js event emitter example");

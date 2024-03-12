@@ -1,4 +1,4 @@
-const { log } = require('console');
+// const { log } = require('console');
 const http = require('http');
 const url = require('url');
 const port = 3000;
@@ -7,18 +7,18 @@ const server = http.createServer((req,res)=>{
     const parsedUrl = url.parse(req.url, true);
 
     const path = parsedUrl.pathname;
-    const path1 = path.replace(/^\/+|\/+$/g,'');
+    // const path1 = path.replace(/^\/+|\/+$/g,'');
 
     res.statusCode = 200;
     res.setHeader('Content-Type','text/html');
 
-    if (path==='/'){
+    if (path === '/'){
         res.end("<h1>Welcome to the Web Page</h1>");
     }
     else if(path === '/about'){
         res.end('<h1>About Us</h1><p>This is the about page.</p>');
     }
-    else if(path == '/contact'){
+    else if(path === '/contact'){
         res.end('<h1>Contact Us</h1><p>Contact info goes here.</p>');
     }
     else{

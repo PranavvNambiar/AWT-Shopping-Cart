@@ -43,7 +43,7 @@ function RegistrationForm() {
           email : email,
           password : password,
           // confirmPassword : confirmPassword,
-          // gender : gender,
+          gender : gender,
         };
         try {
           const response = await fetch('http://localhost:4000/submit-form',{

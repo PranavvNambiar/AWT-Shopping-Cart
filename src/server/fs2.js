@@ -11,7 +11,7 @@ async function fileOps(){
         await fs.appendFile('server3.txt','\n This is the seconds content.');
         console.log("Added content to the file");
     } catch (error) {
-        console.error("An error has occured", err);
+        console.error("An error has occured", error);
     }
 }
 

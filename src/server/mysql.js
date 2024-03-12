@@ -1,5 +1,4 @@
 //!REMAINIG WORK - DO Create, Insert, Update and Delete Operations too
-
 const mysql = require('mysql2');
 const express = require('express')
 const bodyparser = require('body-parser');
@@ -12,7 +11,7 @@ var mysqlConnection = mysql.createConnection({
     user: "root",
     password: "root",
     database: "test",
-    port: 3308
+    port: 3306
 });
 
 mysqlConnection.connect((err) =>{
@@ -42,7 +41,8 @@ app.get('/learner', (req,res) =>{
 });
 
 //Router to GET specific learner detail from the MySQL database
-app.get('/learners/:id', (req,res) =>{
+//Replace :id with the number in MySQL row.
+app.get('/learner/:id', (req,res) =>{
     mysqlConnection.query("SELECT * from learner WHERE id=?",[req.params.id],(err, rows, fields) =>{
         if(!err){
             res.send(rows);
