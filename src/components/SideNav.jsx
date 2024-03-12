@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import RegistrationForm from './test4';
-import Booklist from "./index"
+import RegistrationForm from './RegistrationForm';
+import Booklist from "./Booklist"
 function SideNav() {
     return (
 
