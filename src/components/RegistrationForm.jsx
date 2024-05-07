@@ -124,28 +124,28 @@ function RegistrationForm() {
           placeholder="Confirm Password"/>
       <br></br>
 
-    <div>
-    <input type="radio" 
+      <div>
+      <input type="radio" 
+          id="gender" 
+          name="gender" 
+          value="Male" 
+          checked={gender === 'Male'} 
+          onChange={handleInputChange} /> Male
+
+        <input type="radio" 
         id="gender" 
         name="gender" 
-        value="Male" 
-        checked={gender === 'Male'} 
-        onChange={handleInputChange} /> Male
+        value="Female" 
+        checked={gender === 'Female'} 
+        onChange={handleInputChange} /> Female
 
-      <input type="radio" 
-      id="gender" 
-      name="gender" 
-      value="Female" 
-      checked={gender === 'Female'} 
-      onChange={handleInputChange} /> Female
-
-      <input type="radio" 
-      id="gender" 
-      name="gender" 
-      value="Others" 
-      checked={gender === 'Others'} 
-      onChange={handleInputChange} /> Others
-    </div>
+        <input type="radio" 
+        id="gender" 
+        name="gender" 
+        value="Others" 
+        checked={gender === 'Others'} 
+        onChange={handleInputChange} /> Others
+      </div>
 
     <button type="submit" 
     onClick={() => {validateForm()}}

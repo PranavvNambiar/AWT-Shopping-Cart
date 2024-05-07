@@ -1,29 +1,31 @@
-const http = require('http')
-const port = 3000;
+const http = require("http");
+
+const hostname = 'localhost';
+const port = 4000;
 
 const server = http.createServer((req, res) => {
-    const path = req.url;
+    res.setHeader("Content-Type", "text/html");
 
+    const path = req.url
     res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/html');
 
-    if (path === '/') {
-        res.end("<h1>Welcome to the Web Page</h1>");
+    if (path === "/") {
+        res.end("<h1>THIS IS THE Welcome PAGE</h1>")
     }
-    else if (path === '/about') {
-        res.end('<h1>About Us</h1><p>This is the about page.</p>');
+    else if (path === "/about") {
+        res.end("<h1>THIS IS THE About PAGE </h1>")
     }
-    else if (path === '/contact') {
-        res.end('<h1>Contact Us</h1><p>Contact info goes here.</p>');
+    else if (path === "/contact") {
+        res.end("<h1>THIS IS THE Contact PAGE </h1>")
     }
     else {
-        res.statusCode = 404;
-        res.end("<h1>404 NOT FOUND</h1>");
+        res.statusCode = 404
+        res.end("<h1> ERROR PAGE </h1>")
     }
-});
-
-server.listen(port, () => console.log(`Server running at localhost:${port}`));
-
-server.on('error', (error) => {
-    console.error(error);
 })
+
+server.listen(port, hostname, () => {
+    console.log(`Server is listening at http://${hostname}:${port}`);
+})
+
+server.on('error', (e) => console.error(e))

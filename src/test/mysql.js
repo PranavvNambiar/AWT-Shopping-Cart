@@ -56,7 +56,7 @@ app.get('/learner/update/:id/:name', (req, res) => {
     })
 });
 
-app.get('/learner/insert/:id/:name', (req, res) => {
+app.get('/learner/insert/:id/:name/:age', (req, res) => {
     mysqlConnection.query("INSERT INTO learner VALUES (?,?,?)", [req.params.id, req.params.name, req.params.age], (err, rows) => {
         if (!err) res.send(rows);
         else console.error(err);

@@ -1,17 +1,19 @@
-const fs = require('fs').promises;
+const fs = require("fs").promises;
 
-async function fileOps() {
+async function fileSystem() {
     try {
-        const data = await fs.readFile('server.txt', 'utf-8');
-        console.log("File Content: ", data);
+        //If the file does not exist before hand, the readFile will not work as it is a callback function.
+        //It will wait for it to read the file before function procedes further
+        const data = await fs.readFile("./text/fs1_2.txt", "utf8")
+        console.log("The file content is: " + data);
 
-        await fs.writeFile('server.txt', 'This is my first file');
-        console.log('File has been written');
+        await fs.writeFile("./text/fs1_2.txt", "This is the first file of second fs code")
+        console.log("Data written successfully");
 
-        await fs.appendFile('server3.txt', '\n This is the seconds content.');
-        console.log("Added content to the file");
-    } catch (error) {
-        console.error("An error has occured", error);
+        await fs.appendFile("./text/fs2_2.txt", "This is the second file of second fs code\n")
+        console.log("Data appended successfully");
+    } catch (e) {
+        console.error(e);
     }
 }
-fileOps();
+fileSystem()

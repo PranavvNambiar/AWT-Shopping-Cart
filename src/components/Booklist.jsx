@@ -34,7 +34,7 @@ const books = [
       "title": "Lost in the Labyrinth",
       "author": "Sophia Mitchell",
       "date": "2022-12-09",
-      "imgsrc": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/51qEpMxM7QL._AC_UF1000,1000_QL80_.jpg"
+      "imgsrc": "https://m.media-amazon.com/images/I/51qEpMxM7QL._SY425_.jpg"
     }
 ]
   
@@ -66,8 +66,8 @@ const Booklist = () => {
     return (
       <section className='Book1'>
         {
-          books.map((book, id) => {
-            return (<Book book={book.title} author={book.author} date={book.date} img={book.imgsrc} key={id} />)
+          books.map((b) => {
+            return (<Book book={b.title} author={b.author} date={b.date} img={b.imgsrc} />)
           })}
       </section>
     );

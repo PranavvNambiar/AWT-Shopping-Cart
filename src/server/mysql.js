@@ -1,89 +1,80 @@
-const mysql = require('mysql2');
-const express = require('express')
-const bodyparser = require('body-parser');
-var app = express()
+const mysql = require("mysql2");
+const express = require("express");
+const dotenv = require("dotenv");
 
-app.use(bodyparser.json());
+dotenv.config();
 
-// let mysqlConnection = mysql.createConnection({
-//     host: "localhost",
-//     user: "root",
-//     password: "root",
-//     database: "test",
-//     port: 3306
-// });
+const hostname = 'localhost';
+const port = process.env.PORT || 8080; // Use port from environment variable or default to 8080
 
-let mysqlConnection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "123456",
-    database: "test",
-    port: 3306
+const app = express();
+app.use(express.json());
+
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT
 });
 
+db.connect((err) => {
+    !err ? console.log("DB Connected Successfully") : console.error("DB Connection Failed");
+})
 
-mysqlConnection.connect((err) => {
-    if (err) {
-        console.log("Connection Failed");
-    }
-    else {
-        console.log("Connection Established Successfully");
-    }
+app.listen(port, hostname, () => {
+    console.log(`Server is listening on http://${hostname}:${port}`);
+})
+
+app.get("/learner", (req, res) => {
+    db.query("SELECT * FROM learner", (err, rows) => {
+        !err ? res.send(rows) : res.send(err)
+    })
 });
 
-//Establish the server connection
-//PORT ENVIRONMENT VARIABLE
-const port = 8080;
-app.listen(port, () => console.log(`Listening on port ${port}..`));
-
-//Creating GET Router to fetch all the learner details from the MySQL Database
-app.get('/learner', (req, res) => {
-    mysqlConnection.query("SELECT * from learner", (err, rows) => {
+app.get("/learner/:id", (req, res) => {
+    db.query("SELECT * FROM learner WHERE id = ?", [req.params.id], (err, rows) => {
         if (!err) {
             res.send(rows);
-        }
-        else {
-            console.log(err);
+        } else {
+            console.error(err);
         }
     })
-});
+})
 
-//Router to GET specific learner detail from the MySQL database
-//Replace :id with the number in MySQL row.
-app.get('/learner/:id', (req, res) => {
-    mysqlConnection.query("SELECT * from learner WHERE id=?", [req.params.id], (err, rows, fields) => {
+app.get("/learner/delete/:id", (req, res) => {
+    db.query(`DELETE FROM learner WHERE id=?`, [req.params.id], (err, result) => {
         if (!err) {
-            res.send(rows);
+            if (result.affectedRows > 0) {
+                console.log(`Deleted learner`);
+                res.status(200).send("Learner deleted successfully");
+            } else {
+                console.log(`No learner found`);
+                res.status(404).send("No learner found with the specified ID");
+            }
+        } else {
+            console.error(err);
+            res.status(500).send("Error deleting learner");
         }
-        else {
-            console.log(err);
-        }
     })
-});
-app.get('/learner/delete/:id', (req, res) => {
-    mysqlConnection.query('DELETE FROM learner where id= ?', [req.params.id], (err, rows) => {
-        if (!err)
-            res.send(rows);
-        else
-            console.log(err);
-    })
-});
+})
 
-app.get('/learner/update/:id/:name', (req, res) => {
-    mysqlConnection.query('UPDATE learner Set name = ? where id= ?', [req.params.name, req.params.id], (err, rows) => {
-        if (!err)
-            res.send(rows);
-        else
-            console.log(err);
-    })
-});
-
-app.get('/learner/insert/:id/:name/:age', (req, res) => {
-    mysqlConnection.query('INSERT INTO learner VALUES (?,?,?)', [req.params.id, req.params.name, req.params.age], (err, rows) => {
+app.get("/learner/update/:name/:id", (req, res) => {
+    db.query(`UPDATE learner SET name=? WHERE id=?`, [req.params.name, req.params.id], (err, result) => {
         if (!err) {
-            res.send("INSERTED SUCCESSFULLY\n", rows);
+            res.send(result);
+        } else {
+            console.error(err);
         }
-        else
-            console.log(err);
     })
+})
+
+app.get("/learner/insert/:id/:name/:age", (req, res) => {
+    db.query(`INSERT INTO learner VALUES (?,?,?)`, [req.params.id, req.params.name, req.params.age], (err, result) => {
+        if (!err) {
+            res.send(result);
+        } else {
+            console.error(err);
+        }
+    });
 });

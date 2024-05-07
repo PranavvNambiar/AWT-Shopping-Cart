@@ -33,30 +33,5 @@ function SideNav() {
       </Router>
     );
   }
-// const SideNav = () => (
-//   <div style={{ width: 240 }}>
-//   <Sidenav defaultOpenKeys={['5', '6']}>
-//     <Sidenav.Body>
-//       <Nav activeKey="1">
-//         <Nav.Item eventKey="1">
-//           Home
-//         </Nav.Item>
-//         <Nav.Item eventKey="2" >
-//           New Arrivals
-//         </Nav.Item>
-//         <Nav.Item eventKey="3" >
-//           Registration
-//         </Nav.Item>
-//         <Nav.Item eventKey="4" >
-//           Categories
-//         </Nav.Item>
-//         <Nav.Item eventKey="5" icon={PlusIcon}>
-//           Cart
-//         </Nav.Item>
-//       </Nav>
-//     </Sidenav.Body>
-//   </Sidenav>
-// </div>
-// );
   
 export default SideNav;
